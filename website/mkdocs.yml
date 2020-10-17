@@ -1,1 +1,7 @@
 site_name: Горбуновка 2020 - андан
+markdown_extensions:
+    - toc:
+        toc_depth: 3
+theme:
+    name: readthedocs
+    nav_style: dark
