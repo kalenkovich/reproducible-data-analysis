@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Git - Горбуновка 2020 - андан</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Git";
+    var mkdocs_page_input_path = "1_git.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Горбуновка 2020 - андан</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">До приезда на школу</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Git</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Репозиторий</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Коммиты</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Ветки</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#github">GitHub</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Горбуновка 2020 - андан</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Git</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="git">Git</h1>
+<p>Git - система, которая позволяет хранить историю изменения файлов в вашем проекте.
+По большей части вы в ней храните файлы с текстом или код (<code>.txt</code>, <code>.md</code>, <code>.py</code>, <code>.r</code>, <code>.rmd</code>, <code>.csv</code> и т.д.), но ничего, кроме соображений экономии места на диске или в облаке, не мешает вам там же хранить какие-угодно файлы.
+Вот несколько основных преимуществ от ее использования:</p>
+<ul>
+<li>вы сильно реже будете оказываться в ситуации "я ничего в коде не менял, а оно почему-то больше не работает", потому что вы всегда можете посмотреть, что вы там на самом деле поменяли,</li>
+<li>у вас будет возможность посмотреть, когда и с какого черта появился любой кусок теста и/или кода,</li>
+<li>вы получаете инструмент, который позволяет вам с коллегами параллельно работать над одним и тем же проектом, а потом контролируемо сводить это все вместе.</li>
+</ul>
+<p>Чтобы использовать полностью все возможности git нужно с ним работать, запуская основную программу git, а также разные вспомогательные утилиты в командной строке.
+Раньше или позже вы столкнетесь с проблемой, которая вас сподвигнет изучить такой способ использования git, но без него в большинистве случаем можно спокойно обойтись.
+Для это мы с вами установили SourceTree, в котором все то же самое можно делать, кликая на кнопочки в графическом интерфейсе.
+Заодно мы получаем довольно удобную визуализацию историю развития репозитория, которая помогает в нем ориентироваться.</p>
+<p>В этом туториале мы создадим репозиторий и научимся базовым операция по работе с ним.
+Этих операций хватает в большинстве случаев.
+При большом желании можно никогда про другие и не узнавать.</p>
+<h2 id="_1">Репозиторий</h2>
+<p>Git-репозиторий - папка, в которой хранятся все файлы вашего проекта в текущем его состоянии, а также скрытая папка ".git", в которой хранятся все вспомогательные файлы, которые позволяют git работать, а вам - перемещаться в произвольное место в истории развития вашего проекта.</p>
+<p>Более строго репозиторием называется только то, что хранится в папке ".git", а непосредственно файлы, которые находятся в корневой папке называются <strong>рабочим деревом</strong> (<strong>working tree</strong>).
+Это разграничение не только вопрос занудства - нам еще понадобится этот термин.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Создайте в вашей рабочей папке подпапку "repo" (стандартное сокращение от слова repository - репозиторий)</li>
+<li>Откройте SourceTree</li>
+<li>В меню наверху выберите <code>File</code> -&gt; <code>Clone/New</code> (также можно нажать <code>Ctrl+N</code> на клавиатуре или кнопку с плюсиком в интерфейсе)</li>
+<li>Выберите вкладку "Create"</li>
+<li>Нажмите Browse - выберите там папку "repo"</li>
+<li>Во второй строке поменяйте "repo" на "gorbunovka2020" (это влияет только на отображение в SourceTree)</li>
+<li>Поставьте галочку около "Create Repository On Account:"</li>
+<li>Выберите ваш аккаунт на GitHub</li>
+<li>Если хотите, можете что-нибудь вписать в Description</li>
+<li>Нажмите "Create"</li>
+</ul>
+<p>&lt;инструкция с картинками&gt;</p>
+<h2 id="_2">Коммиты</h2>
+<p>В git-терминологии коммитом называется сохраненное состояние всех файлов в репозитории, отслеживаемых git'ом.
+Но также коммитом называют процесс сохранения подобного состояния.
+Поэтому можно "закоммитить файл" (т.е. добавить файл в репозиторий и создать новый коммит, который будет включать этот файл), а можно "откатиться ко вчерашнему коммиту" (т.е. вернуть все файлы в то состояние, которое было сохранено вчера).</p>
+<p>На данный момент наш репозиторий абсолютно пустой.
+Сейчас мы это исправим: создадим файл, добавим его в репозиторий и закоммитим.</p>
+<p><em>Задание</em></p>
+<p>Создайте пустой текстовый файл "readme.md" в корне репозитория и вставьте в него следующий текст (вместе с решеткой).</p>
+<pre><code># Эффект Струпа
+
+В психологии эффектом Струпа (англ. Stroop effect) называют задержку реакции при прочтении слов, когда цвет слов не совпадает с написанными словами (к примеру, слово «красный» написано синим).
+
+*взято с [википедии](https://ru.wikipedia.org/wiki/%D0%AD%D1%84%D1%84%D0%B5%D0%BA%D1%82_%D0%A1%D1%82%D1%80%D1%83%D0%BF%D0%B0)*
+</code></pre>
+
+<p>Посли отрисовки (это произойдет несколькими шагами ниже) ваш текст будет выглядеть примерно так:</p>
+<blockquote>
+<p><h1> Эффект Струпа </h1></p>
+<p>В психологии эффектом Струпа (англ. Stroop effect) называют задержку реакции при прочтении слов, когда цвет слов не совпадает с написанными словами (к примеру, слово «красный» написано синим).</p>
+<p><em>взято с <a href="https://ru.wikipedia.org/wiki/%D0%AD%D1%84%D1%84%D0%B5%D0%BA%D1%82_%D0%A1%D1%82%D1%80%D1%83%D0%BF%D0%B0">википедии</a></em></p>
+</blockquote>
+<p><em>Задание</em></p>
+<ul>
+<li>В SourceTree выделите файл <code>readme.md</code> в области "Unstaged Files" и нажмите "Stage Selected", чтобы перенести этот файл в область "Staged Files".</li>
+<li>В нижней части в пустом белом прямоугольнике введите описание нашего будущего коммита: "add readme.md".</li>
+<li>Нажмите "Commit"</li>
+</ul>
+<p>&lt;инструкция с картинками&gt;</p>
+<h2 id="_3">Ветки</h2>
+<p>Ветки - параллельные версии вашего репозитория.
+То, что вы делаете в одной ветке, никак не затрагивает другие ветки.
+Это позволяет</p>
+<ul>
+<li>поэкспериментировать со скриптом PsychoPy, который уже точно работает, не боясь, что вы все испортите</li>
+<li>работать над предобработкой данных утром и над кодом анализа вечером, не боясь, что поменяете что-то в коде, который задействуется и там, и там</li>
+<li>работать над разными частями проекта параллельно с другими людьми, не боясь, что вы запорете работу друг друга или не сможет потом все аккуратно свести так, чтобы у всех все работало</li>
+</ul>
+<p>Важный момент здесь - "не боясь".
+Если вы делает что-то из списка выше без версионирования и не живете в постоянном неконтролируемом страхе, что у вас не получится ничего повторить с теми же результатами, что в первый раз - зря.
+А с git и ветками можно будет не бояться (ну, или хотя бы меньше бояться).</p>
+<p>Традиционно первая и одновременно основная ветка в вашем репозитории называется <code>master</code>.
+Каждый раз, когда вы начинаете работать над каким-то новым куском проекта, вы создаете новую ветку (скажем, под названием <code>ek_update-intro</code>).</p>
+<blockquote>
+<p>Ветки можно называть как-угодно, но удобно выбрать один какой-то паттерн и придерживаться его внутри репозитория.
+Например, <code>&lt;ваши инициалы маленькими латинскими буквами&gt;_&lt;краткое описание назначения ветки&gt;</code>.
+Мой инициалы - <code>ek</code>, я хотел внести правки во введение статьи, поэтому назвал ветку <code>ek_update-intro</code>.</p>
+</blockquote>
+<p>Дальше вы на нее переходите (<em>checkout</em>), после чего все ваши коммиты пойдут уже в эту новую ветку.
+Когда вы убедитесь, что все работает и при этом не поломалось ничего, что у вас было сделано до создания этой ветки, вы сливаете (<em>merge</em>) вашу ветку с веткой <code>master</code>.
+Делается это следующим образом: </p>
+<ul>
+<li>вы переходите (<em>checkout</em>) на ветку <code>master</code> (в результате все ваши изменения пропадут из вашей рабочей папки, но они все еще хранятся в репозитории)</li>
+<li>вы сливаете вашу новую ветку <code>ek_update-intro</code> в ветку <code>master</code> (при этом создается специальный коммит слияния - <em>merge commit</em>)</li>
+</ul>
+<p>Сейчас вы сможете сами провести все эти действия.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Нажмите на кнопку "Branch" и создайте новую ветку под тем названием, которое захотите. </li>
+<li>Проверьте, что в левой части окна SourceTree появилась новая ветка, ее название выделено жирным шрифтом, а слева от нее стоит черный кружок - так в SourceTree обозначается ветка, на который вы сейчас находитесь (которая <em>checked out</em>).</li>
+<li>
+<p>Внесите какие-нибудь правки в описание эффекта Струпа в <code>readme.md</code> (не забудьте сохранить файл). Например, добавьте следующий абзац:</p>
+<pre><code>Иногда в это понятие также включают ускорение реакции, когда цвет слов совпадает с написанными словами (к примеру, слово «красный» написано красным), по сравнению с теми случаями, когда слово не описывает цвет (к примеру, слово «стул» написано красным).
+</code></pre>
+</li>
+<li>
+<p>В SourceTree:</p>
+<ul>
+<li>Закоммитьте изменения (не забудьте добавить какое-нибудь описание).</li>
+<li>Нажмите на название своей ветки в левой панели - отобразится дерево вашего репозитория. Обратите внимание, что ветка <code>master</code> осталась позади нашей новой ветки.</li>
+<li>Перейдите на ветку <code>master</code>: кликните по ней правой кнопкой и нажмите <code>Checkout master...</code>. Убедитесь, что <code>master</code> выделено жирным шрифтом, а слева от него стоит черный кружок.</li>
+<li>Теперь кликните правой кнопкой по своей ветке и нажмите <code>Merge &lt;название-вашей-ветки&gt; into current branch</code>.</li>
+<li>В появившемся окошке поставьте галочку около <code>Create a new commit even if fast-forward is possible</code> и нажмите <code>OK</code>.</li>
+<li>Посмотрите на визуализацию дерева вашего репозитория (если она закрылась, нажмите левой кнопкой на <code>master</code>). Вы увидите, что мы сделали:<ul>
+<li>Ответвились (<em>branched out</em>) от <code>master</code>.</li>
+<li>Создали коммит.</li>
+<li>Вветвились обратно в (<em>merged into</em>) <code>master</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="github">GitHub</h2>
+<p>GitHub - онлайн-хранилище репозиториев.
+Хранить копию репозитория онлайн - очень удобный способ обмениваться текущей версией вашего проекта с коллегами.
+Каждый, кто что-то добавил, загружает (<em>push</em>) обновленные ветки на GitHub.
+После этого все остальные могут скачать (<em>pull</em>) любую ветку на локальный компьютер.
+Таким образом, вы добиваетесь синхронизации вашего проекта между всеми участниками.</p>
+<ul>
+<li>Убедитесь, что вы находитесь на ветке <code>master</code>.</li>
+<li>Нажмите кнопку <code>Push</code> вверху SourceTree.</li>
+<li>В появившемся окошке убедитесь, что галочка стоит только возле ветки <code>master</code>.</li>
+<li>Нажмите кнопку <code>Push</code> (внутри окошка).</li>
+<li>Дождитесь, пока SourceTree закончит делать, что делал.</li>
+</ul>
+<p>Теперь ваша ветка <code>master</code>, а вместе с ней все коммиты, которые к ней ведут, оказались на GitHub.
+Давайте проверим, что это действительно произошло.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Нажмите на кнопку <code>Remote</code> в правом верхнем углу - вас перекинет в браузер, в котором откроется страничка вашего репозитория на GitHub.</li>
+<li>Убедитесь, что на вкладке <code>&lt;&gt; Code</code> вы видите единственный файл <code>readme.md</code>. 
+  Можете открыть его, чтобы убедиться, что внутри него тот же текст, что и на вашем компьютере.</li>
+<li>Когда GitHub находит в корне репозитория файл под названием <code>readme.md</code>, то он попробует его отрисовать, используя свою версию markdown - вы можете увидеть результат чуть ниже.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href=".." class="btn btn-neutral" title="До приезда на школу"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
