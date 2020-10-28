@@ -54,15 +54,27 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">До приезда на школу</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_2">Установить</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Зарегистрируйтесь</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Установите</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#conda">conda</a>
+    <li class="toctree-l3"><a class="reference internal" href="#miniconda">miniconda</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sourcetree">SourceTree</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rstudio">RStudio</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#github">Завести аккаунт на Github</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Проверьте, что вы можете</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">Запустить терминал в произвольной папке</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_3">Проверить, что вы можете</a>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">Запустить конду в этом терминале</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#-">Если что-то пошло не так</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -104,21 +116,66 @@
             <div class="section">
               
                 <h1 id="_1">До приезда на школу</h1>
-<h2 id="_2">Установить</h2>
+<h2 id="_2">Зарегистрируйтесь</h2>
 <ul>
-<li>conda</li>
-<li>git</li>
+<li>На <a href="https://github.com/">GitHub</a>.</li>
+<li>На <a href="https://bitbucket.org/">Bitbucket</a>.</li>
+</ul>
+<p>GitHub'ом мы реально будем пользоваться.
+А вот Bitbucket понадобится только для того, чтобы установить SourceTree (см. ниже).
+Но зарегистрироваться все равно надо.</p>
+<h2 id="_3">Установите</h2>
+<ul>
+<li>miniconda (Anaconda тоже пойдет)</li>
 <li>SourceTree</li>
 <li>RStudio</li>
 </ul>
-<h3 id="conda">conda</h3>
-<h2 id="github">Завести аккаунт на Github</h2>
-<p>Заведите аккаунт <a href="https://github.com/">Github</a>.</p>
-<h2 id="_3">Проверить, что вы можете</h2>
+<p>Перед установкой посмотрите - вдруг у вас что-то из этого уже стоит.
+Если не уверены, то попробуйте поискать в меню Start (Windows) или в Spotlight (MacOS).
+В случае с miniconda/Anaconda имеет смысл в поиск вбивать "conda", чтобы зацепить и то, и другое.</p>
+<h3 id="miniconda">miniconda</h3>
+<p>Установщик <a href="https://docs.conda.io/en/latest/miniconda.html">здесь</a>.</p>
 <ul>
-<li>запустить терминал в произвольной папке</li>
-<li>запустить конду в этом терминале</li>
+<li>Когда вас спросят, добавить ли конду в путь - соглашайтесь, хотя они сами рекомендуют не соглашаться. Оба варианта не идеальны, но статистика показывает, что мой вариант приносит меньше проблем.</li>
+<li>При установке выберите папку без кириллицы и пробелов. Это поможет избежать решаемых, но совершенно лишних проблем.</li>
 </ul>
+<h3 id="sourcetree">SourceTree</h3>
+<p>Установщик <a href="https://www.sourcetreeapp.com/">здесь</a>.</p>
+<h3 id="rstudio">RStudio</h3>
+<p>Установщик <a href="https://rstudio.com/products/rstudio/download/">здесь</a>.</p>
+<h2 id="_4">Проверьте, что вы можете</h2>
+<h3 id="_5">Запустить терминал в произвольной папке</h3>
+<p>Создайте папку <code>&lt;наша_папка&gt;</code> для этого курса в любом удобном вам месте.
+Желательно, чтобы путь не содержал кириллицы и пробелов.</p>
+<p>На Windows: </p>
+<ul>
+<li>откройте эту папку в проводнике,</li>
+<li>вбейте в адресную строку <code>cmd</code> и нажмите <code>Enter</code>,</li>
+<li>убедитесь, что открылось окошко с черным фоном - это и есть окошко терминала,</li>
+<li>убедитесь, что в нижней строке вы видите путь к нашей папку.</li>
+</ul>
+<p>На MacOS:</p>
+<ul>
+<li>зайдите в <code>System Preferences</code> &gt; <code>Keyboard</code> &gt; <code>Shortcuts</code> &gt; <code>Services</code>, </li>
+<li>найдите и поставьте галочку около <code>New Terminal at Folder</code>,</li>
+<li>октройте в finder'е папку, в которой лежит наша папка,</li>
+<li>кликните по ней правой кнопкой,</li>
+<li>нажмите на <code>Services</code> &gt; <code>New Terminal at Folder</code>,</li>
+<li>убедитесь, что открылось окошко с черным фоном - это и есть окошко терминала,</li>
+<li>убедитесь, что в нижней строке вы видите путь к нашей папку.</li>
+</ul>
+<h3 id="_6">Запустить конду в этом терминале</h3>
+<p>Наберите в терминале</p>
+<pre><code>conda --version
+</code></pre>
+
+<p>Вы должны увидете что-то вроде</p>
+<pre><code>conda 4.8.3
+</code></pre>
+
+<p>(цифры могут отличаться).</p>
+<h3 id="-">Если что-то пошло не так</h3>
+<p>Пишите в Slack - разберемся.</p>
               
             </div>
           </div>
