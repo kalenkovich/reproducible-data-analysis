@@ -1,5 +1,15 @@
 # До приезда на школу
 
+## Зарегистрируйтесь
+
+- На [GitHub](https://github.com/).
+- На [Bitbucket](https://bitbucket.org/).
+
+GitHub'ом мы реально будем пользоваться.
+А вот Bitbucket понадобится только для того, чтобы установить SourceTree (см. ниже).
+Но зарегистрироваться все равно надо.
+
+
 ## Установите
 
 * miniconda (Anaconda тоже пойдет)
@@ -25,9 +35,6 @@
 
 Установщик [здесь](https://rstudio.com/products/rstudio/download/).
 
-## Завести аккаунт на Github
-
-Заведите аккаунт [Github](https://github.com/).
 
 ## Проверить, что вы можете
 
