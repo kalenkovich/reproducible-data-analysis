@@ -3,7 +3,6 @@
 ## Установить
 
 * conda
-* git
 * SourceTree
 * RStudio
 
