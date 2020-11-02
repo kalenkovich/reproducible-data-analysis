@@ -6,3 +6,5 @@ markdown_extensions:
 theme:
     name: readthedocs
     nav_style: dark
+    hljs_languages:
+        - yaml
