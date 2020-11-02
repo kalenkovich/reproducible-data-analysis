@@ -185,4 +185,14 @@ conda activate reproducible_ds
 
 - Сделайте копию `environment-full.yml` и назовите ее `environment.yml`.
 - Удалите строки со всеми пакетам, кроме `python` и `pip`.
+- Удалите текст после версий (начиная со второго `=`).
+  У меня получилось следующее:
+  
+    ```yml
+	name: reproducible_ds
+	dependencies:
+	  - pip=20.2.4
+	  - python=3.7.9
+	```
+  
 - Закоммитьте `environment.yml`.
