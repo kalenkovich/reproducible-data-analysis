@@ -251,9 +251,9 @@ conda env update -n reproducible_ds -f environment.yml --prune
 
 Общий алгоритм при установке нового пакета `x` выглядит следующим образом:
 
-- Добавьте новый пакет `x` без версии в список `dependencies` в `environment.yml`.
+- Добавьте новый пакет `x` с версией, если вы ее знаете, или без нее в список `dependencies` в `environment.yml`.
 - `conda env update -n <env-name> -f environment.yml --prune`
-- Допишите в `environment.yml` версию нового пакета.
+- Допишите в `environment.yml` версию нового пакета, если не сделали этого вначале.
 - Добавьте в `environment.yml` пакеты (вместе с версиями), которые установились во время установки `x` и заслуживают того, чтобы хранить их версию (см. главу про `environment.yml`).
 - `conda env export > environment-full.yml`
 - Проверьте, что изменения в `environment.yml` и `environment-full.yml` соответствут вашим ожиданиям.
