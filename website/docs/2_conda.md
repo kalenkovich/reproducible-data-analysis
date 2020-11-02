@@ -202,7 +202,7 @@ conda activate reproducible_ds
 Все, что осталось сделать вам либо кому-то ещё, чтобы восстановить энвайронмент - запустить следующий код в терминале, запущенном в той же папке, в которой лежит `environment.yml`:
 
 ```bash
-conda env update -n reproducible_ds_recreated -f environment.yml --prune
+conda env update -n reproducible_ds -f environment.yml --prune
 ```
 
 Давайте разберем эту команду по частям:
