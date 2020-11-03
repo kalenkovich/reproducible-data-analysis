@@ -2,6 +2,9 @@ site_name: "Репродуцируемый анализ данных: ЛШ «П�
 markdown_extensions:
     - toc:
         toc_depth: 3
+    - pymdownx.superfences
 theme:
     name: readthedocs
     nav_style: dark
+    hljs_languages:
+        - yaml

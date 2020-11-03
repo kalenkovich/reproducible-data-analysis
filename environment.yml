@@ -1,3 +1,4 @@
 dependencies:
   - python=3.7.9
   - conda-forge::mkdocs=1.1.2
+  - conda-forge::pymdown-extensions=8.0.1
