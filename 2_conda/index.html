@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>conda - Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "conda";
+    var mkdocs_page_input_path = "2_conda.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../0_before-coming/">До приезда на школу</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1_git/">Git</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">conda</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#environment">Environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#environmentyml">environment.yml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Воссоздание энвайронмента</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Установка новых пакетов</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Каналы</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#r">R</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#psychopy">PsychoPy</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Удаление</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">Пакета</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">Энвайронмента</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">В завершение</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>conda</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="conda">conda</h1>
+<p>git позволяет нам хранить версии всего нашего кода.
+Казалось бы, что этого достаточно для того, чтобы вопроизвести результаты его выполнения.
+На самом деле, к сожалению, этого мало.
+Этот код кто-то еще должен выполнить - интерпретатор Питона, Matlab, R - не так важно, кто.
+И разные версии этих программ с большой вероятностью выдадут разные результаты, даже если ни ваш код, ни ваши данные при этом не поменялись.
+А это значит, что ваш коллега или другой исследователь, который хочет воспользоваться вашим исследованием, не сможет получить те же результаты, что получились у вас.
+На самом деле все даже еще чуть хуже: даже с нужной версий Питона, Matlab или R, у них могут быть другие версии пакетов в Питоне или R или тулбоксов в Matlab - и все равно они получат другие результаты.</p>
+<p>Отличия при этом могут быть незначительными - <code>p = 0.0027</code>, вместо <code>p = 0.0028</code>.
+Такое отличие, понятное дело, не имеет принципиального значения.
+Но может быть и отличие в разы, а, возможно, код просто не запустится.
+Чтобы понять, что пошло не так - нужно аккуратно и подробно задокументировать (и заверсионировать в вашем git-репо, конечно) версии всего софта и всех библиотек/тулбоксов, которыми вы пользовались - мы будем это называть <em>программным окружением</em>.
+Это - программа-минимум: что-то скорее всего пойдет не так, но у вас хотя бы будет возможность попытаться понять, что именно к этому привело.
+В случае если вы пользуетесь Matlab, это одновременно программа-максимум: если конкретную версию открытого тулбокса еще можно скачать, то ставить новый Matlab для каждого проекта и ставить/удалять нужные платные тулбоксы является совсем безумием.
+(Поэтому давайте не будем пользоваться Matlab по возможности.)</p>
+<p>Программа-максимум - использовать софт, который одновременно отслеживает версии программ/пакетов и позволяет вам их устанавливать.
+При таком варианте при репликации достаточно установить этот софт, натравить его на файл, в котором записаны все версии рабочего софта - и вы получите копию программного окружения.
+Такие программы называются <em>системами управления пакетами</em>.
+Мы будем учиться пользоваться системой под названием <em>conda</em>.
+Она позволит нам для каждого проекта установить свою версию Питона, R, пакетов для питона и некоторого дополнительного софта (например, pandoc, ffmpeg и т.д.).</p>
+<h2 id="environment">Environment</h2>
+<p>Ключевой возможностью conda является создание под каждый проект своей отдельной песочницы со своим питоном, своим R, своими пакетами для питона и прочим всяким.
+Эти песочницы называются окружением среды (<em>environment</em>, <em>энвайронмент</em>).
+Когда вы находитесь в энвайронменте (в случае conda мы говорим, что <em>энвайронмент</em> активирован), то запускаться будет именно тот Питон, тот R, которые вы поставили руками в этот энвайронмент.
+При этом ничего, что у вас было установлено до создания энвайронмента, затронуто не будет.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Откройте терминал в корне репозитория.</li>
+<li>
+<p>Создайте новый энвайронмент под названием <code>reproducible_ds</code>:</p>
+<ul>
+<li>наберите в терминале  </li>
+</ul>
+<pre class="highlight"><code class="language-bash">conda create -n reproducible_ds python=3.7</code></pre>
+
+<ul>
+<li>подождите пару минут (это основная, по моему опыту, проблема conda - она мееддллееннааяя)</li>
+<li>conda выдаст список того, что она планирует установить и спросит вас, готовы ли вы на такое (Proceed ([y]/n)?). Отвечайте, что готовы - наберите <code>y</code> и нажмите <code>enter</code>.</li>
+</ul>
+</li>
+<li>
+<p>Посмотрите, где, по мнению терминала, находится Питон (<code>where python</code> на Windows, <code>which python</code> на MacOS). Если вариантов несколько, то нас будет интересовать первый.</p>
+</li>
+<li>
+<p>Активируйте наш свежесозданный энвайронмент</p>
+<pre class="highlight"><code class="language-bash">conda activate reproducible_ds</code></pre>
+
+</li>
+<li>
+<p>Посмотрите, где теперь находится Питон, и сравните с тем, что было.</p>
+</li>
+</ul>
+<p>Что только что произошло? Начнем с команды, которой мы создали энвайронмент:</p>
+<pre class="highlight"><code class="language-bash">conda create -n reproducible_ds python=3.7</code></pre>
+
+<p>С точки зрения терминала, он запустил <code>conda</code> с параметрами <code>create -n reproducible_ds python=3.7</code>.
+Логика обработки параметров - это вопрос к conda, а не к терминалу, так что пока забудем про них.
+Терминал начнет искать программу <code>conda</code> везде, где он только может.
+В первом же месте, где найдет - ту <code>conda</code> и запустит.</p>
+<blockquote>
+<p>Чтобы посмотреть, где он может ее найти, мы можем в терминале набрать <code>where conda</code> (Windows) или <code>which conda</code> (MacOS).
+Терминал найдет программу <code>where</code>/<code>which</code> и передаст ей параметр <code>conda</code>.
+Можете выполнить <code>where where</code> или <code>which which</code> ради любопытства.
+Во многих случаях программу можно найти в нескольких местах, тогда <code>where</code>/<code>which</code> выдаст несколько строк.
+Запущена при этом будет только первая найденная программа.</p>
+</blockquote>
+<p>Вернемся к параметрам, которые терминал передаст conda:</p>
+<pre class="highlight"><code class="language-bash">create -n reproducible_ds python=3.7</code></pre>
+
+<p>Каждый из параметров, разделенных пробелами, что-то сообщает conda:</p>
+<ul>
+<li><code>create</code> говорит conda, что мы сейчас будем создавать новый энвайронмент,</li>
+<li><code>-n</code> предупреждает, что следующий за ним параметр - название энвайронмента,</li>
+<li><code>reproducible_ds</code> - название энвайронмента,</li>
+<li><code>python=3.7</code> - в этом энвайронменте нужно устиновать <code>python</code> версии <code>3.7</code>.</li>
+</ul>
+<blockquote>
+<p>В конце команды мы могли добавить произвольное количество пакетов через пробел, опционально с указанием версий.
+Для conda python просто еще один пакет.</p>
+</blockquote>
+<p>После того, как мы выполнили эту комманду, conda подготовила все для создания нового энвайронмента, спросила нас, согласны ли мы на все (мы ответили "да"), после чего собственно создала энвайронмент.
+Пока это никак еще не повлияло на нашу работу, просто у нас на диске где-то появилась здоровая папка <code>reproducible_ds</code>.
+В этом мы смогли убедиться, посмотрев, где, с точки зрения терминала, находится питон.
+Обратите внимание, что его расположение никакого отношения к нашему новому энвайронменту не имеет.
+Чтобы мы могли начать работать в нем, его нужно активировать:</p>
+<pre class="highlight"><code class="language-bash">conda activate reproducible_ds</code></pre>
+
+<p>Обратите внимание, что после этого в терминале в начале строки появилось название энвайронмента в скобках - это подсказка со стороны <code>conda</code>, что энвайронмент активирован.
+Чтобы не полагаться на подсказки, мы опять посмотрели, где терминал будет искать питон.
+В этот раз расположение находится в папке <code>reproducible_ds</code>, чего мы собственно и добивались.</p>
+<h2 id="environmentyml"><code>environment.yml</code></h2>
+<p>Пока мы успели создать новый энвайронмент и даже его активировать.
+Это все, конечно, прекрасно, но пока мы никак не приблизились к тому, чтобы этот энвайрномент можно было воссоздать кому-то другому.
+Для этого существуют энвайронмент-файлы - списки всего, что мы устанавливали в энвайронмент вместе с их версиями.
+Дефолтное название для такого файла в случае conda - <code>environment.yml</code>.
+Мы же сейчас создадим энвайронмент-файл и сохраним его в файл <code>environment-full.yml</code>.
+Почему <code>-full</code> - к этому вы вернемся чуть позже.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>
+<p>Запустите в терминале</p>
+<pre class="highlight"><code class="language-bash">conda env export &gt; environment-full.yml</code></pre>
+
+</li>
+<li>
+<p>Откройте создавшийся файл <code>environment-full.yml</code> в текстовом редакторе. У меня он выглядит вот так:</p>
+<pre class="highlight"><code class="language-yml">name: reproducible_ds
+channels:
+  - defaults
+dependencies:
+  - ca-certificates=2020.10.14=0
+  - certifi=2020.6.20=pyhd3eb1b0_3
+  - openssl=1.1.1h=he774522_0
+  - pip=20.2.4=py37_0
+  - python=3.7.9=h60c2a47_0
+  - setuptools=50.3.0=py37h9490d1a_1
+  - sqlite=3.33.0=h2a8f88b_0
+  - vc=14.1=h0510ff6_4
+  - vs2015_runtime=14.16.27012=hf0eaf9b_3
+  - wheel=0.35.1=py_0
+  - wincertstore=0.2=py37_0
+  - zlib=1.2.11=h62dcd97_4
+prefix: D:\software_windows\miniconda3\envs\reproducible_ds</code></pre>
+
+<p>Если у вас файл отличается от моего - это нормально.</p>
+</li>
+<li>
+<p>Удалите из него части про <code>channels</code> и про <code>prefix</code>. Вот результат в моем случае:</p>
+<pre class="highlight"><code class="language-yml">name: reproducible_ds
+dependencies:
+  - ca-certificates=2020.10.14=0
+  - certifi=2020.6.20=pyhd3eb1b0_3
+  - openssl=1.1.1h=he774522_0
+  - pip=20.2.4=py37_0
+  - python=3.7.9=h60c2a47_0
+  - setuptools=50.3.0=py37h9490d1a_1
+  - sqlite=3.33.0=h2a8f88b_0
+  - vc=14.1=h0510ff6_4
+  - vs2015_runtime=14.16.27012=hf0eaf9b_3
+  - wheel=0.35.1=py_0
+  - wincertstore=0.2=py37_0
+  - zlib=1.2.11=h62dcd97_4</code></pre>
+
+</li>
+<li>
+<p>git</p>
+<ul>
+<li>убедитесь, что вы на ветке <code>master</code>,</li>
+<li>создайте ветку <code>&lt;ваши_инициалы&gt;_conda</code>,</li>
+<li>закоммитьте файл <code>environment-full.yml</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Мы убрали часть про <code>prefix</code>, потому что она осмысленна только на вашем компьютере и только при установке <code>conda</code> в том же самом месте.
+Часть про <code>channels</code> мы убрали, потому что я предпочитаю указывать каналы на уровне отдельных пакетов, а не всего энвайронмента.
+Если слово "каналы" в контексте conda вам пока ничего не говорит - это нормально, можете пока это все проигнорировать.</p>
+<p>Наш энвайронмент-файл полностью описывает все, что есть в нашем энвайронменте.
+В идеале мы бы пытались восстановить энвайронмент прямо на основании этого файла.
+К сожалению, такой вариант часто очень плохо работает по разным причинам (разные операционные системы, критические обновления в технических пакетах и т.д.).
+Поэтому в качестве компромиса мы будем держать в нашем энвайронмент-файле только версии пакетов, либо которые мы сами устанавливали (пока это только <code>python</code>), либо про которые мы знаем, что их версии хранить важно (в нашем случае в качестве такого пакета мы возьмем <code>pip</code>).</p>
+<p>Версии каких пакетов важно хранить?
+Однозначного ответа, к сожалению, нет.
+Правило, которым пользуюсь я - если я когда-либо устанавливал какой-то пакет сам по себе - надо сохранить его версию.
+Что будет, если этого окажется недостаточно?
+Ну, что ж, придется раскапывать <code>environment-full.yml</code> и пытаться восстановиться по нему.
+Будем надеяться, что такого с вами не произойдет.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Сделайте копию <code>environment-full.yml</code> и назовите ее <code>environment.yml</code>.</li>
+<li>Удалите строки со всеми пакетам, кроме <code>python</code> и <code>pip</code>.</li>
+<li>
+<p>Удалите текст после версий (начиная со второго <code>=</code>).
+  У меня получилось следующее:</p>
+<pre class="highlight"><code class="language-yml">name: reproducible_ds
+dependencies:
+  - pip=20.2.4
+  - python=3.7.9</code></pre>
+
+</li>
+<li>
+<p>Закоммитьте <code>environment.yml</code>.</p>
+</li>
+</ul>
+<h2 id="_1">Воссоздание энвайронмента</h2>
+<p>Все, что осталось сделать вам либо кому-то ещё, чтобы восстановить энвайронмент - запустить следующий код в терминале, запущенном в той же папке, в которой лежит <code>environment.yml</code>:</p>
+<pre class="highlight"><code class="language-bash">conda env update -n reproducible_ds -f environment.yml --prune</code></pre>
+
+<p>Давайте разберем эту команду по частям:</p>
+<ul>
+<li><code>env</code> - мы будем работать с набором подпрограмм для работы с энвайронментами,</li>
+<li><code>update</code> - команда, которая обновляет, но также может и создать новый энвайронмент,</li>
+<li><code>-n reproducible_ds_recreated</code> - энвайронмент с таким названимем будет обновлен или создан, если его еще нет,</li>
+<li><code>-f environment.yml</code> - обновлять нужно будет до состояния, в котором в энвайронменте будут все пакеты из этого файла с указанными в нем версиями,</li>
+<li><code>--prune</code> - удалит пакеты, которые не нужны для пакетов в <code>environment.yml</code>, релевантно только при обновлении.</li>
+</ul>
+<p>Вообще говоря, есть специальная команда <code>create</code>, которая создана именно для создания энвайронмента.
+Я решил дать вам вариант с <code>update</code>, потому что эту команду можно использовать как при создании энвайронмента по энвайронмент-файлу, так и при обновлении энвайронмент-файла после того, как файл был изменен.
+Таким образом, вам  нужно будет учить на одну команду меньше.</p>
+<h2 id="_2">Установка новых пакетов</h2>
+<p>Если вы погуглите, как установить новый пакет, используя conda, вы не найдете тот замороченный способ, который я сейчас вам покажу.
+К сожалению, со стандартным простым способом слишком велика вероятность получить <code>environment.yml</code> (напоминаю, что мы его вручную обновляем), который не соответствует действительности.
+Поэтому пойдем замороченным путем.</p>
+<p>Устанавливать мы будем <code>ipython</code> - интерактивную консоль для питона.
+Если вы не знаете, что это такое - ничего страшного.
+Последовательность действий не меняется, если нужно установить какой-то другой пакет.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>
+<p>Добавьте в список <code>dependencies</code> в <code>environment.yml</code> следующую строчку:</p>
+<pre class="highlight"><code class="language-yml">  - ipython</code></pre>
+
+</li>
+<li>
+<p>Запустите команду для обновления энвайронмента (это та же самая команда, которая используется для воссоздания энвайронмента.
+В отличие от <code>conda create</code> она ничего спрашивать, к сожалению, не будет.</p>
+</li>
+<li>Посмотрите в список установленных пакетов и найдите там <code>ipython</code>.</li>
+<li>
+<p>Перенесите версию <code>ipython</code> в <code>environment.yml</code> (ваша версия может отличаться от моей)</p>
+<pre class="highlight"><code class="language-yml">  - ipython=7.18.1</code></pre>
+
+</li>
+<li>
+<p>Обновите <code>environment-full.yml</code>.
+Обновление делается так же, как создание.</p>
+</li>
+<li>В SourceTree выделите по очереди <code>environment.yml</code> и <code>environment-full.yml</code> и посмотрите в панели справа, что поменялось.</li>
+<li>Закоммитьте оба файла с сообщением вроде <code>install ipython</code>.</li>
+</ul>
+<p>Общий алгоритм при установке нового пакета <code>x</code> выглядит следующим образом:</p>
+<ul>
+<li>Добавьте новый пакет <code>x</code> с версией, если вы ее знаете, или без нее в список <code>dependencies</code> в <code>environment.yml</code>.</li>
+<li><code>conda env update -n &lt;env-name&gt; -f environment.yml --prune</code></li>
+<li>Допишите в <code>environment.yml</code> версию нового пакета, если не сделали этого вначале.</li>
+<li>Добавьте в <code>environment.yml</code> пакеты (вместе с версиями), которые установились во время установки <code>x</code> и заслуживают того, чтобы хранить их версию (см. главу про <code>environment.yml</code>).</li>
+<li><code>conda env export &gt; environment-full.yml</code></li>
+<li>Проверьте, что изменения в <code>environment.yml</code> и <code>environment-full.yml</code> соответствут вашим ожиданиям.</li>
+<li>Закоммитьте <code>environment.yml</code> и <code>environment-full.yml</code>.</li>
+</ul>
+<h2 id="_3">Каналы</h2>
+<p>Когда conda устанавливает пакеты, она их ищет в хранилище anaconda.
+По-дефолту, она их ищет в так называем канале <code>defaults</code>.
+Канал - это просто раздел хранилища.
+Некоторые пакеты не удостаиваются чести оказаться в <code>defаults</code>, поэтому при их установке нужно указать, в каком канале их надо искать.
+Сегодня мы будем использовать только один дополнительный канал <code>conda-forge</code>, в котором расположен psychopy и R.</p>
+<p>Вот так выглядит формат указания пакета с опциональным каналом и версией:</p>
+<pre class="highlight"><code class="language-yml">  - [&lt;channel-name&gt;::]&lt;package-name&gt;[=&lt;version&gt;]</code></pre>
+
+<p>Например, если мы хотим поставить psychopy 3.2.4, мы пропишем в <code>dependencies</code></p>
+<pre class="highlight"><code class="language-yml">  - conda-forge::psychopy=3.2.4</code></pre>
+
+<h3 id="r">R</h3>
+<p>Начнем с простого - установим R.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Установите R версии 4.0.1 из канала conda-forge. Пакет с R называется <code>r-base</code>.
+Версии никаких дополнительных пакетов сохранять не нужно.
+Все дополнительные пакеты помогают устанавливать библиотеки R, используя conda, чего мы делать все равно не будем.</li>
+<li>Проверьте, что все установилось, как надо - что R был установлен именно в наш энвайронмент, а не куда-то еще:<ul>
+<li>Проверьте, что терминал ищет R в папке с энвайронментом.</li>
+<li>Проверьте, что запущенный R - именно тот R, который мы только что установили:<ul>
+<li><code>r</code> - запуск R,</li>
+<li><code>R.home('bin')</code> - уточняем у R, где лежит его исполняемый файл,</li>
+<li><code>quit()</code> - выходим из R,</li>
+<li><code>n</code> - при выходе R спросит, хотим ли мы сохранить рабочую среду (<code>Save workspace image? [y/n/c]:</code>), чего мы не хотим - поэтому <code>n</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="psychopy">PsychoPy</h3>
+<blockquote>
+<p>Установка psychopy займет мало вашего времени, но много машинного, поэтому не оставляйте ее на последний момент.</p>
+</blockquote>
+<p>С psychopy все чуть-чуть сложнее: conda-пакет psychopy зависит от нескольких пакетов, которых нет в хранилище anaconda.
+К счастью, они есть в другом хранилище - <a href="https://pypi.org/">PyPI</a>, для которого есть своя система управления пакетами - pip.
+Если вы посмотрите в <code>environment.yml</code>, то увидите, что в нашем энвайронменте pip уже стоит и мы даже закрепили его версию.
+К <em>не</em>счастью, conda-пакет psychopy не знает, как сказать conda, что ему нужно установить несколько pip-зависимостей.
+Поэтому нам придется проставить их руками в <code>environment.yml</code>.
+Вот, как это делается в общем случае:</p>
+<p><pre class="highlight"><code class="language-yml">name: &lt;environment-name&gt;
+dependencies:
+  - pip=&lt;pip-version&gt; # эта строка говрит conda, что нужно установить pip
+  - &lt;some-conda-package-1&gt;
+  ...
+  - &lt;some-conda-package-N&gt;
+  - pip:  # эта строка говрит conda, что следующие пакеты нужно установить, используя pip
+    - &lt;some-PyPI-package-1&gt;
+    ...
+    - &lt;some-PyPI-package-K&gt;</code></pre>
+<em>Задание</em></p>
+<ul>
+<li>Откройте <a href="https://www.psychopy.org/download.html#anaconda-and-miniconda">инструкцию</a> по установке psychopy с помощью conda.</li>
+<li>Откройте энвайронмент-файл <code>psychopy-env.yml</code>.</li>
+<li>Скопируйте из него то, что касается установки пакетов с помощью pip в <code>environment.yml</code>.</li>
+<li>Добавьте psychopy 3.2.4 из канала conda-forge в <code>environment.yml</code>. </li>
+<li>Обновите энвайронмент, используя <code>environment.yml</code>.</li>
+<li>Обновите <code>environment-full.yml</code>.</li>
+<li>Закрепите версии следующих пакетов:<ul>
+<li>scipy</li>
+<li>numpy</li>
+<li>pandas</li>
+<li>matplotlib</li>
+<li>xarray</li>
+</ul>
+</li>
+<li>Закрепите версии пакетов, установленных с помощью pip.</li>
+<li>
+<p>Проверьте установку - запустите PsychoPy Builder:</p>
+<pre class="highlight"><code class="language-bash">python -m psychopy.app.psychopyApp -b</code></pre>
+
+</li>
+<li>
+<p>Если все прошло хорошо, то закоммитьте изменения в <code>environment.yml</code> и <code>environment-full.yml</code></p>
+</li>
+</ul>
+<h2 id="_4">Удаление</h2>
+<h3 id="_5">Пакета</h3>
+<ul>
+<li>Удалите пакет из <code>environment.yml</code>.</li>
+<li>Удалите из <code>environment.yml</code> все зависимости пакета, которые вы добавили вручную.</li>
+<li>
+<p>Переустановите весь энвайронмент с помощью.</p>
+<pre class="highlight"><code class="language-bash">conda env create -f environment.yml --force </code></pre>
+
+</li>
+<li>
+<p>Обновите <code>environment-full.yml</code> и закоммитьте все.</p>
+</li>
+</ul>
+<p>К сожалению, хоть мы и пишем во время обновления в конце <code>--prune</code>, что должно приводить к удалению лишних пакетов, понятие "лишних" на данный момент очень странное и зависит от истории установки пакетов.
+Поэтому приходится создавать энвайронмент заново с нуля.
+Следить за этой засадой можно вот в <a href="https://github.com/conda/conda/issues/7279">этой</a> issue.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Найдите способ найти все пакеты, которые мы закрепили в энвайронмент-файле вручную, когда устанавливали psychopy.</li>
+<li>Удалите psychopy.</li>
+</ul>
+<h3 id="_6">Энвайронмента</h3>
+<ul>
+<li>
+<p>Выйдите из энвайронмента, если вы в нём:</p>
+<p><pre class="highlight"><code class="language-bash">conda deactivate</code></pre>
+- Удалите энвайронмент:</p>
+<pre class="highlight"><code class="language-bash">conda remove -n &lt;environment-name&gt; --all</code></pre>
+
+</li>
+</ul>
+<p><em>Задание</em></p>
+<p>Не трогайте ничего, нам еще понадобится наш энвайронмент :)</p>
+<h2 id="_7">В завершение</h2>
+<p>Все, как мы тут работали с conda - довольно утомительный и замороченный вариант, признаю.
+Но пока я лучшего не знаю.
+Немного надоедает тратить время на борьбу с энвайронментами, когда надо что-то осмысленное делать, но это, с моей точки зрения, неплохой копромис между "авось ничего не поменяется" и работой в виртальной машине.
+Хотелось бы, конечно, чтобы все шаги, которые мы делали была автоматизированы: мы бы просто создавали энвайронмент, ставили пакеты, удаляли пакеты, а conda бы за нас обновляла <code>environment.yml</code> и <code>environment-full.yml</code>.
+Есть обоснованная надежда, что так и произойдет с выходом conda 5 (см. <a href="https://github.com/conda/conda/issues/7248">эту</a> ишью).</p>
+<p>Из положительного могу сказать, что борьба с энвайронментами занимает сильно меньше времени с набором опыта работы с conda.
+Также умение работать с conda уже дважды спасало мои эксперименты, когда за полчаса до прихода испытуемого выяснялось, что кто-то поменял на экспериментальном компьютере что-то с psychopy.
+То есть мучения не такие уж большие, а бонусы - довольно-таки: </p>
+<ul>
+<li>высокая репродуцируемость программного окружения,</li>
+<li>возможность разворачивать на любом компьютере именно то окружение, которое вам нужно. 
+Это может быть psychopy нужной вам версии с нужными пакетами, а может быть просто возможность продолжить работу на временном компьютере, не портя при этом все владельцу.</li>
+</ul>
+<p><em>Задание</em></p>
+<ul>
+<li>Слейте вашу ветку в <code>master</code>.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../1_git/" class="btn btn-neutral" title="Git"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../1_git/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

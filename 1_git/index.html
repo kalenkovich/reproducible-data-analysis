@@ -26,6 +26,7 @@
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -67,6 +68,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#github">GitHub</a>
     </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_conda/">conda</a>
                     </li>
                 </ul>
       </div>
@@ -143,12 +148,11 @@
 Сейчас мы это исправим: создадим файл, добавим его в репозиторий и закоммитим.</p>
 <p><em>Задание</em></p>
 <p>Создайте пустой текстовый файл "readme.md" в корне репозитория и вставьте в него следующий текст (вместе с решеткой).</p>
-<pre><code># Эффект Струпа
+<pre class="highlight"><code># Эффект Струпа
 
 В психологии эффектом Струпа (англ. Stroop effect) называют задержку реакции при прочтении слов, когда цвет слов не совпадает с написанными словами (к примеру, слово «красный» написано синим).
 
-*взято с [википедии](https://ru.wikipedia.org/wiki/%D0%AD%D1%84%D1%84%D0%B5%D0%BA%D1%82_%D0%A1%D1%82%D1%80%D1%83%D0%BF%D0%B0)*
-</code></pre>
+*взято с [википедии](https://ru.wikipedia.org/wiki/%D0%AD%D1%84%D1%84%D0%B5%D0%BA%D1%82_%D0%A1%D1%82%D1%80%D1%83%D0%BF%D0%B0)*</code></pre>
 
 <p>Посли отрисовки (это произойдет несколькими шагами ниже) ваш текст будет выглядеть примерно так:</p>
 <blockquote>
@@ -245,6 +249,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../2_conda/" class="btn btn-neutral float-right" title="conda">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
       
         <a href="../0_before-coming/" class="btn btn-neutral" title="До приезда на школу"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
@@ -274,6 +280,8 @@
       
         <span><a href="../0_before-coming/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../2_conda/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
