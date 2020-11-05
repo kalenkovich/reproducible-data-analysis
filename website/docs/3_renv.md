@@ -40,7 +40,7 @@ renv выполняет гораздо более ограниченную фу�
 - Инициализируйте renv:
 
 	```r
-	renv::init(bare = TRUE, settings = list(snapshot.type = 'all')
+	renv::init(bare = TRUE, settings = list(snapshot.type = 'all'))
 	```
 
 
