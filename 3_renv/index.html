@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>renv - Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "renv";
+    var mkdocs_page_input_path = "3_renv.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Введение</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../0_before-coming/">До приезда на школу</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1_git/">Git</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_conda/">conda</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">renv</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#x">Установка нового пакета x</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#x_1">Удаление пакета x</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>renv</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="renv">renv</h1>
+<p>R-пакет renv - система управления пакетами R.
+То, что мы делали для питона, его пакетов, R и потенциально другого софта с помощью conda, для R мы будем делать с помощью renv.
+renv выполняет гораздо более ограниченную функцию, чем conda - он только следит за пакетами R.
+Зато работа с ним гораздо проще для пользователя:</p>
+<ul>
+<li>один единственный файл <code>renv.lock</code> вместо <code>environment.yml</code> и <code>environment-full.yml</code>,</li>
+<li><code>renv.lock</code> пополняется программно - не нужно ничего править руками,</li>
+<li>удаление пакета или откат к предыдущему состоянию не принуждает нас восстанавливать весь энвайронмент с нуля,</li>
+<li>если мы запускаем R/RStudio из корня репозитория, то renv не нужно отдельно активировать,</li>
+<li>точно еще что-то, чего я пока не вспомнил.</li>
+</ul>
+<p>При работе с renv по большей части достаточно будет выучить три команды:</p>
+<ul>
+<li>
+<p><code>renv::init(bare = TRUE, settings = list(snapshot.type = 'all'))</code> - инициализация renv в текущей папке (как раз создадутся все файлы/папки, которые мы обсуждали выше).</p>
+<blockquote>
+<p>Я советую запускать <code>init</code> именно с параметром <code>bare=TRUE</code>, который говорит что не надо пока в библиотеку <code>renv/library</code> ничего устанавливать.
+В противном случае renv попытается сохранить в проект все библиотеки, которые у нас уже установлены (в библиотеке R нашего condsa-энвайронмента), а также пройтись по всем R-файлам (<code>.r</code>, <code>.rmd</code>), которые у нас есть в репозитории, и выцепить оттуда все пакеты R, которые вы в них загржаете.
+Гораздо лучше брать этот процесс в свои руки: установили пакет, отметили его в renv (см. ниже), закоммитили.
+Также рекоммендую проставлять <code>settings = list(snapshot.type = 'all')</code>. Этот параметр перекликается с первым: он говорит, что renv должен сохранять версии всех установленных пакетов, а не только тех, которые упоминаются в ваших скриптах.</p>
+</blockquote>
+</li>
+<li>
+<p><code>renv::snapshot()</code> - сохранить текущее состояние библиотеки в <code>renv.lock</code></p>
+</li>
+<li><code>renv::restore(clean = TRUE)</code> - восстановить состояние библиотеки до состояния, сохраненного в <code>renv.lock</code>. Без <code>clean = TRUE</code> пакеты будут доустанавливаться, но не удаляться.</li>
+</ul>
+<p>Подробнее можно прочитать про renv на его <a href="https://rstudio.github.io/renv/index.html">страничке</a> или в виньетке <a href="https://rstudio.github.io/renv/articles/renv.html">"Introduction to renv"</a>.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>
+<p>Установите renv:</p>
+<ul>
+<li>Активируйте наш энвайронмент.</li>
+<li>Запустите R (<code>r</code> в терминале) в корне репозитория.</li>
+<li>
+<p>Установите renv</p>
+<pre class="highlight"><code class="language-r">install.packages('renv')</code></pre>
+
+</li>
+</ul>
+</li>
+<li>
+<p>Инициализируйте renv:</p>
+<pre class="highlight"><code class="language-r">renv::init(bare = TRUE, settings = list(snapshot.type = 'all')</code></pre>
+
+</li>
+<li>
+<p>Перезапустите R (<code>quit()</code> -&gt; <code>n</code> -&gt; <code>r</code>).</p>
+</li>
+<li>Сохраните состояние в renv (<code>renv::snapshot()</code>).</li>
+<li>Закоммитьте следующие файлы:<ul>
+<li><code>.Rprofile</code></li>
+<li><code>renv.lock</code></li>
+<li><code>renv/activate.r</code></li>
+<li><code>renv/setings.dcs</code></li>
+<li><code>renv/.gitignore</code></li>
+</ul>
+</li>
+</ul>
+<p>Вот, что мы только что закоммитили (и что - нет):</p>
+<ul>
+<li><code>.Rprofile</code> - скрипт, который активирует renv, когда R запускается из корня репозитория.</li>
+<li><code>renv.lock</code> - файл со списком пакетов, их версий и того, откуда они были взяты.</li>
+<li><code>renv/activate.R</code> - скрипт-помощник, который активирует renv; именно его вызывает <code>.Rprofile</code>.</li>
+<li><code>renv/library</code> - тут хранятся все пакеты вашего проекта.
+Мы не будем коммитить в git ничего из этой папки.
+<code>renv</code> знает об этом, поэтому создает еще следующий файл.</li>
+<li><code>renv/.gitignore</code> - этот файл говорит git, на какие файлы можно закрыть глаза.</li>
+<li><code>renv/settings.</code></li>
+</ul>
+<h2 id="x">Установка нового пакета <code>x</code></h2>
+<p>Я советую следующий порядок действий:</p>
+<ul>
+<li><code>install.packages('x')</code>,</li>
+<li><code>renv::snapshot()</code>,</li>
+<li>закоммитьте изменения.</li>
+</ul>
+<blockquote>
+<p>Я часто после установки пакета не сохраняю его, потому что хочу сначала убедиться, что он мне действительно подходит и нужен.
+Не делайте так: в 50% случаев я забываю его сохранить, а потом удивляюсь, почему "я ничего не менял, оно все работало, а теперь не работает".
+Не надо так делать.</p>
+</blockquote>
+<p><em>Задание</em></p>
+<ul>
+<li>Установите пакет <code>remotes</code>.</li>
+</ul>
+<p>По-дефолту, R устанавливает пакеты из хранилища пакетов под названием <a href="https://cran.r-project.org/">CRAN</a>.
+Некоторые пакеты пока не удостоились чести быть добавленными в CRAN, поэтому их приходится устанавливать откуда-нибудь еще.
+Например, с GitHub.
+Именно этим и занимается пакет <code>remotes</code>, который мы установили выше.
+Почти всегда в этом случае на страничке репозитория на GitHub будет написано, как именно это сделать.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Зайдите на <a href="https://github.com/crsh/papaja">страничку на GitHub</a> пакета papaja.</li>
+<li>Найдите команду, которая его устанавливает (не используйте её пока!).</li>
+</ul>
+<p>Обратите внимание, что команда, которую вы нашли, использует пакет devtools, а не remotes.
+Так будет часто с пакетами, размещенными на GitHub.
+Советую не слушать никого и использовать вместо этого remotes - меньше лишних пакетов будет установлено.
+Просто возьмите командру, рекоммендуемую автором пакета, и замените в ней <code>devtools</code> на <code>remotes</code>.</p>
+<p><em>Задание</em></p>
+<ul>
+<li>Установите papaja, используя remotes.
+Если будут предлагать установить какой-нибудь пакет из исходников - не ведитесь, отвечайте "no".</li>
+<li>Каждый раз, когда установка будет ломаться, найдите причину в сообщении.<ul>
+<li>игнорируйте ошибки, помеченные как <code>converted from warning</code>.</li>
+<li>Если проблема возникла при установке какого-то пакета - попробуйте установить его отдельно (не забудь сделать снэпшот, закоммитить и пометить в сообщении, что это все ради papaja).</li>
+<li>Отдельно для Windows:<ul>
+<li>Если ругается, что <code>gcc: command not found</code>, то нужно установать <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools 4.0</a> (для R версии 4 и выше).
+Если ваша версия R старше, то по ссылке выше поищите ссылку на RTools для более старых версий.</li>
+<li>Если говорит, что нужно установать RTools 4.0, то нужно установать <a href="https://cran.r-project.org/bin/windows/Rtools/">RTools 4.0</a> (для R версии 4 и выше)</li>
+<li>Если вы уже установили RTools, а он все равно чего-то хочет:<ul>
+<li>установите пакет <code>pkgbuild</code></li>
+<li>каждую команду для установки пакетов вставьте в следующий код:
+    <pre class="highlight"><code class="language-r">pkgbuild::with_build_tools({&lt;ваша-команда&gt;})</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="x_1">Удаление пакета <code>x</code></h2>
+<p>В отличие от conda здесь удаление происходит симметрично (ну, почти) по отношению к установке:</p>
+<ul>
+<li><code>remove.packages('x')</code>,</li>
+<li><code>renv::snapshot()</code>,</li>
+<li>закоммитьте изменения.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../2_conda/" class="btn btn-neutral" title="conda"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../2_conda/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
