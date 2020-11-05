@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Репродуцируемые статьи - Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u0420\u0435\u043f\u0440\u043e\u0434\u0443\u0446\u0438\u0440\u0443\u0435\u043c\u044b\u0435 \u0441\u0442\u0430\u0442\u044c\u0438";
+    var mkdocs_page_input_path = "4_papaja.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Введение</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../0_before-coming/">До приезда на школу</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../1_git/">Git</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../2_conda/">conda</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../3_renv/">renv</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Репродуцируемые статьи</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Репродуцируемый анализ данных: ЛШ «Прикладная когнитивная наука»</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Репродуцируемые статьи</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">Репродуцируемые статьи</h1>
+<p>На данный момент мы умеем писать код так, чтобы знать всю его историю.
+Мы можем воспроизвести программное окружение, в котором это код запускался.
+Остался последний отрезок пути между данными и статьей - перенос цифр/графиков из программы, в которой вы их считали/рисовали, в ту программу, где вы пишете статью.
+Отследить за тем, что вы правильно перенесли все, копируя руками в Word, практически невозможно.
+Поэтому мы будем писать репродуцируемую статью с помощью файлов r-markdown и пакета papaja.</p>
+<ul>
+<li>r-markdown - файл, в котором одновременно находится текст вашей статьи и код, который считает цифры и рисует графики. Это позволяет избежать ручного копирования.</li>
+<li>papaja - пакет для R, который позволяет получить из r-markdown статью в форматах <code>.pdf</code> или <code>.docx</code>, которые отформатированы в соответствиями требованиям APA.
+Полученную статью можно затем без изменений отправить в большинство журналов в области психологии.</li>
+</ul>
+<p><em>Задание</em></p>
+<ul>
+<li>Откройте терминал в корне репозитория и актвируйте наш энвайронмент.</li>
+<li>С помощью <code>where python</code> (Windows) или <code>which python</code> (MacOS) посмотрите и запомните адрес папки с вашим энвайронментом.</li>
+<li>Запустите RStudio, которое будет использовать R из нашего энвайронмента.<ul>
+<li>Запустите rstudio из терминала (наберите <code>rstudio</code>) и сразу нажмите и зажмите <code>ctrl</code>.</li>
+<li>В появившемся маленком окошке выберите "Choose a specific version of R" и нажмите "Browse".</li>
+<li>Дойдите до папки с энвайронментом, в ней перейдите в папку "Lib", а в ней выберите папку "R".</li>
+<li>Нажмите "Select folder".</li>
+<li>Нажмите "OK"</li>
+</ul>
+</li>
+<li>Создайте r-markdown-файл по шаблону papaja:<ul>
+<li>Выберите File -&gt; New File -&gt; R Markdown...</li>
+<li>Если RStudio скажет, что нужно обновить какие-то пакеты - соглашайтесь (не забудьте renv-снэпшот и коммит).</li>
+<li>Выберите From Template -&gt; APA Article (6th edition) -&gt; OK</li>
+<li>Сохраните файл в корень репозитория под названием <code>master.rmd</code>.</li>
+<li>Закоммитьте.</li>
+</ul>
+</li>
+<li>В верхней части файла поправьте, что не будет лень.</li>
+<li>В строке, начинающейся на <code>output</code>, поменяйте <code>papaja::apa6_pdf</code> на <code>papaja::apa6_docx</code>.</li>
+<li>Нажмите кнопку "knit".</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../3_renv/" class="btn btn-neutral" title="renv"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../3_renv/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
